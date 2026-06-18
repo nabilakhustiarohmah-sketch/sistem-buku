@@ -1,3 +1,3 @@
 <?php
 
-echo "PHP Vercel Berjalan";
+require __DIR__.'/../public/index.php';
