@@ -9,8 +9,7 @@ class BookController extends Controller
 {
     public function index()
     {
-        $books = Book::latest()->get();
-        return view('books.index', compact('books'));
+        return 'Laravel berhasil berjalan';
     }
 
     public function create()
