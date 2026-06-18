@@ -2,4 +2,6 @@
 
 require __DIR__.'/../vendor/autoload.php';
 
-echo "VENDOR OK";
+$app = require_once __DIR__.'/../bootstrap/app.php';
+
+echo "BOOTSTRAP OK";
