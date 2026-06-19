@@ -19,6 +19,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        // Pindahkan jalur kompilasi blade ke folder /tmp milik Vercel
+        config(['view.compiled' => '/tmp']);
     }
 }
