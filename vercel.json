@@ -1,22 +1,11 @@
 {
-    "version": 2,
-    "builds": [
-        {
-            "src": "api/index.php",
-            "use": "vercel-php@0.7.1",
-            "config": {
-                "phpVersion": "8.3"
-            }
-        }
-    ],
-    "routes": [
-        {
-            "src": "/src/(.*)",
-            "dest": "/public/src/$1"
-        },
-        {
-            "src": "/(.*)",
-            "dest": "api/index.php"
-        }
-    ]
+  "version": 2,
+  "builds": [
+    { "src": "public/**/*", "use": "@vercel/static" },
+    { "src": "api/nabila.js", "use": "@vercel/node" }
+  ],
+  "routes": [
+    { "src": "/api/nabila", "dest": "/api/nabila.js" },
+    { "src": "/(.*)", "dest": "/public/$1" }
+  ]
 }
