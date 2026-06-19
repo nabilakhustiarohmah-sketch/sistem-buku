@@ -10,5 +10,14 @@
       "src": "/(.*)",
       "dest": "/api/index.php"
     }
-  ]
+  ],
+  "builds": [
+    {
+      "src": "index.php",
+      "use": "@vercel/php"
+    }
+  ],
+  "hooks": {
+    "build": "mkdir -p /tmp/bootstrap/cache"
+  }
 }
