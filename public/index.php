@@ -4,17 +4,23 @@ use Illuminate\Http\Request;
 
 define('LARAVEL_START', microtime(true));
 
-// Cek apakah aplikasi sedang dalam mode maintenance...
+// Determine if the application is in maintenance mode...
 if (file_exists($maintenance = __DIR__.'/../storage/framework/maintenance.php')) {
     require $maintenance;
 }
 
-// Registrasi Autoloader Composer...
+// Register the Auto Loader...
 require __DIR__.'/../vendor/autoload.php';
 
-// Jalankan Aplikasi Laravel...
+// Bootstrap Laravel...
 $app = require_once __DIR__.'/../bootstrap/app.php';
 
+// TRIK PAMUNGKAS: Belokkan storage sebelum request ditangani
+if (isset($_SERVER['VERCEL_URL'])) {
+    $app->useStoragePath('/tmp');
+}
+
+// Handle the request...
 $handle = $app->make(Illuminate\Contracts\Http\Kernel::class);
 
 $response = $handle->handle(
@@ -22,4 +28,3 @@ $response = $handle->handle(
 )->send();
 
 $handle->terminate($request, $response);
-// Pancingan build baru ke-1
