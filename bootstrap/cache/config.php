@@ -1,7 +1,7 @@
 <?php return array (
   'broadcasting' => 
   array (
-    'default' => 'log',
+    'default' => 'null',
     'connections' => 
     array (
       'reverb' => 
@@ -116,8 +116,8 @@
   'app' => 
   array (
     'name' => 'Laravel',
-    'env' => 'local',
-    'debug' => true,
+    'env' => 'production',
+    'debug' => false,
     'url' => 'https://sistem-buku-4zt03ksw2-nabila2.vercel.app/',
     'frontend_url' => 'http://localhost:3000',
     'asset_url' => NULL,
@@ -249,7 +249,7 @@
   ),
   'cache' => 
   array (
-    'default' => 'database',
+    'default' => 'array',
     'stores' => 
     array (
       'array' => 
@@ -500,10 +500,10 @@
   ),
   'logging' => 
   array (
-    'default' => 'single',
+    'default' => 'stderr',
     'deprecations' => 
     array (
-      'channel' => NULL,
+      'channel' => 'null',
       'trace' => false,
     ),
     'channels' => 
@@ -591,7 +591,7 @@
       ),
       'emergency' => 
       array (
-        'path' => '/tmp/laravel.log',
+        'path' => 'D:\\Sistem Buku ( Project vercel )\\sistem-buku\\storage\\logs/laravel.log',
       ),
     ),
   ),
@@ -606,7 +606,7 @@
         'scheme' => NULL,
         'url' => NULL,
         'host' => '127.0.0.1',
-        'port' => '2525',
+        'port' => 2525,
         'username' => NULL,
         'password' => NULL,
         'timeout' => NULL,
@@ -678,7 +678,7 @@
   ),
   'queue' => 
   array (
-    'default' => 'database',
+    'default' => 'sync',
     'connections' => 
     array (
       'sync' => 
@@ -780,7 +780,7 @@
   ),
   'session' => 
   array (
-    'driver' => 'database',
+    'driver' => 'array',
     'lifetime' => 120,
     'expire_on_close' => false,
     'encrypt' => false,
