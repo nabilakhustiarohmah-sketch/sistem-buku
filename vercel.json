@@ -3,21 +3,20 @@
     "builds": [
         {
             "src": "api/index.php",
-            "use": "vercel-php@0.7.1"
-        },
-        {
-            "src": "public/**",
-            "use": "@vercel/static"
+            "use": "vercel-php@0.7.1",
+            "config": {
+                "command": "php artisan config:clear"
+            }
         }
     ],
     "routes": [
         {
-            "src": "/build/(.*)",
-            "dest": "/public/build/$1"
+            "src": "/src/(.*)",
+            "dest": "/public/src/$1"
         },
         {
             "src": "/(.*)",
-            "dest": "/api/index.php"
+            "dest": "api/index.php"
         }
     ]
 }
