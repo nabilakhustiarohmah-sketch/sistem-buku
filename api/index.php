@@ -1,19 +1,21 @@
 <?php
 
-// Trik mutlak: Alihkan folder storage ke /tmp SEBELUM Laravel memuat konfigurasi apa pun
+// 1. Muat Composer Autoloader terlebih dahulu agar semua class Laravel dikenali
+require __DIR__.'/../vendor/autoload.php';
+
+// 2. Trik mutlak: Alihkan folder storage ke /tmp SEBELUM Laravel memuat konfigurasi apa pun
 if (!isset($_ENV['VAPOR_ARTIFACT_NAME'])) {
-    // Buat folder logs di /tmp agar tidak error saat dibaca oleh stream handler
     @mkdir('/tmp/storage/logs', 0755, true);
     @mkdir('/tmp/storage/framework/views', 0755, true);
 }
 
-// Terobos bootstrap Laravel
+// 3. Terobos bootstrap Laravel
 $app = require_once __DIR__.'/../bootstrap/app.php';
 
-// Paksa aplikasi menggunakan folder /tmp untuk menulis log dan cache view
+// 4. Paksa aplikasi menggunakan folder /tmp untuk menulis log dan cache view
 $app->useStoragePath('/tmp/storage');
 
-// Jalankan kernel seperti biasa
+// 5. Jalankan kernel seperti biasa
 $kernel = $app->make(Illuminate\Contracts\Http\Kernel::class);
 
 $response = $kernel->handle(
