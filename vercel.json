@@ -1,18 +1,27 @@
 {
-  "version": 2,
-  "functions": {
-    "api/**/*.php": {
-      "runtime": "vercel-php@0.7.2"
-    }
-  },
-  "routes": [
-    {
-      "src": "/(css|js|images|favicon.png|.*\\.png|.*\\.ico|.*\\.jpg)",
-      "dest": "/public/$1"
+    "version": 2,
+    "framework": "laravel",
+    "commands": {
+        "build": "php artisan config:clear"
     },
-    {
-      "src": "/(.*)",
-      "dest": "/api/index.php"
-    }
-  ]
+    "builds": [
+        {
+            "src": "api/index.php",
+            "use": "@vercel/php"
+        },
+        {
+            "src": "public/**",
+            "use": "@vercel/static"
+        }
+    ],
+    "routes": [
+        {
+            "src": "/build/(.*)",
+            "dest": "/public/build/$1"
+        },
+        {
+            "src": "/(.*)",
+            "dest": "/api/index.php"
+        }
+    ]
 }
