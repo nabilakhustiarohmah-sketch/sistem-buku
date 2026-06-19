@@ -4,13 +4,26 @@ namespace App\Http\Controllers;
 
 use App\Models\Book;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class BookController extends Controller
 {
-   public function index()
-{
-    return 'CONTROLLER OK';
-}
+    public function index()
+    {
+        try {
+            // Hitung jumlah buku di tabel books
+            $count = DB::table('books')->count();
+
+            // Ambil semua data buku
+            $books = Book::all();
+
+            // Kirim ke view index
+            return view('books.index', compact('books', 'count'));
+        } catch (\Exception $e) {
+            // Kalau ada error, tampilkan pesan
+            return "Database error: " . $e->getMessage();
+        }
+    }
 
     public function create()
     {
