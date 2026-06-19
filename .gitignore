@@ -18,10 +18,15 @@
 /public/storage
 /storage/*.key
 /storage/pail
-/vendor
+
 Homestead.json
 Homestead.yaml
 Thumbs.db
-
-.vercel
-.env*
+# Pastikan folder bootstrap tetap terunggah
+!bootstrap/
+# Tetapi abaikan file cache di dalamnya
+bootstrap/cache/*
+!bootstrap/cache/.gitignore
+# Tambahkan ini di bagian bawah file .gitignore Anda
+database/*.sqlite
+database/*.sqlite-journal
