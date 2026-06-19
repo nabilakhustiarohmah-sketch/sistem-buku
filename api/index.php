@@ -1,26 +1,21 @@
 <?php
 
-// PAKSA MODUS DEBUG AKTIF AGAR ERRORNYA KELUAR
-putenv('APP_DEBUG=true');
-$_ENV['APP_DEBUG'] = 'true';
-putenv('APP_ENV=production');
-
-// 1. Muat Composer Autoloader terlebih dahulu
+// 1. Muat Composer Autoloader
 require __DIR__.'/../vendor/autoload.php';
 
-// 2. Alihkan folder storage ke /tmp SEBELUM Laravel memuat konfigurasi apa pun
+// 2. Siapkan folder temporary untuk storage
 if (!isset($_ENV['VAPOR_ARTIFACT_NAME'])) {
     @mkdir('/tmp/storage/logs', 0755, true);
     @mkdir('/tmp/storage/framework/views', 0755, true);
 }
 
-// 3. Terobos bootstrap Laravel
+// 3. Muat Bootstrap Laravel
 $app = require_once __DIR__.'/../bootstrap/app.php';
 
-// 4. Paksa aplikasi menggunakan folder /tmp untuk menulis log dan cache view
+// 4. Paksa jalur storage ke folder /tmp yang bisa ditulis
 $app->useStoragePath('/tmp/storage');
 
-// 5. Jalankan kernel seperti biasa
+// 5. Jalankan Aplikasi
 $kernel = $app->make(Illuminate\Contracts\Http\Kernel::class);
 
 $response = $kernel->handle(
