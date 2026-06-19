@@ -1,15 +1,14 @@
 <?php
 
-use Illuminate\Foundation\Application;
+use Illuminate\Foundation\Configuration\ApplicationBuilder;
 
-$app = new Application(
-    dirname(__DIR__)
-);
-
-// arahkan storage ke /tmp
-$app->useStoragePath('/tmp/storage');
-if (!is_dir('/tmp/bootstrap/cache')) {
-    mkdir('/tmp/bootstrap/cache', 0755, true);
-}
-
-return $app;
+return ApplicationBuilder::configure(basePath: dirname(__DIR__))
+    ->withRouting(
+        web: __DIR__.'/../routes/web.php',
+        commands: __DIR__.'/../routes/console.php',
+        health: '/up',
+    )
+    ->withMiddleware()
+    ->withExceptions()
+    ->create()
+    ->useStoragePath('/tmp/storage');
