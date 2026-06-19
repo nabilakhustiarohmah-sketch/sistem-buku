@@ -1,9 +1,14 @@
 {
-  "version": 2,
-  "builds": [
-    { "src": "public/**/*", "use": "@vercel/static" }
-  ],
-  "routes": [
-    { "src": "/(.*)", "dest": "/public/$1" }
-  ]
+    "$schema": "https://openapi.vercel.sh/vercel.json",
+    "functions": {
+        "api/nova.php": {
+            "runtime": "vercel-php@0.7.4"
+        }
+    },
+    "rewrites": [
+        {
+            "source": "/(.*)",
+            "destination": "/api/nabila.php"
+        }
+    ]
 }
