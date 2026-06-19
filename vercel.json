@@ -5,7 +5,7 @@
             "src": "api/index.php",
             "use": "vercel-php@0.7.1",
             "config": {
-                "command": "php artisan config:clear"
+                "command": "rm -rf bootstrap/cache/*.php && composer install --no-dev --optimize-autoloader"
             }
         }
     ],
