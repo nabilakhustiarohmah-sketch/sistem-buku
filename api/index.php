@@ -1,9 +1,14 @@
 <?php
 
-// 1. Muat Composer Autoloader terlebih dahulu agar semua class Laravel dikenali
+// PAKSA MODUS DEBUG AKTIF AGAR ERRORNYA KELUAR
+putenv('APP_DEBUG=true');
+$_ENV['APP_DEBUG'] = 'true';
+putenv('APP_ENV=production');
+
+// 1. Muat Composer Autoloader terlebih dahulu
 require __DIR__.'/../vendor/autoload.php';
 
-// 2. Trik mutlak: Alihkan folder storage ke /tmp SEBELUM Laravel memuat konfigurasi apa pun
+// 2. Alihkan folder storage ke /tmp SEBELUM Laravel memuat konfigurasi apa pun
 if (!isset($_ENV['VAPOR_ARTIFACT_NAME'])) {
     @mkdir('/tmp/storage/logs', 0755, true);
     @mkdir('/tmp/storage/framework/views', 0755, true);
