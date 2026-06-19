@@ -10,8 +10,5 @@
       "src": "/(.*)",
       "dest": "/api/index.php"
     }
-  ],
-  "hooks": {
-    "build": "mkdir -p /tmp/bootstrap/cache"
-  }
+  ]
 }
