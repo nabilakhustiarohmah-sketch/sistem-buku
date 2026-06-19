@@ -7,10 +7,10 @@ use Illuminate\Http\Request;
 
 class BookController extends Controller
 {
-    public function index()
-    {
-        return 'Laravel berhasil berjalan';
-    }
+   public function index()
+{
+    return 'CONTROLLER OK';
+}
 
     public function create()
     {
