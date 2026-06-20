@@ -2,9 +2,8 @@
 
 return [
 
-   'default' => (isset($_SERVER['VERCEL_JOB_ID']) || isset($_SERVER['NOW_REGION'])) 
-    ? 'stderr' 
-    : env('LOG_CHANNEL', 'stack'),
+   // Ganti baris default log channel menjadi seperti ini:
+'default' => isset($_SERVER['VERCEL_JOB_ID']) || isset($_SERVER['NOW_REGION']) ? 'stderr' : env('LOG_CHANNEL', 'stack'),
 
     'deprecations' => [
         'channel' => env('LOG_DEPRECATIONS_CHANNEL', 'null'),
