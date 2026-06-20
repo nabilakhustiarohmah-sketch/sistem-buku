@@ -2,7 +2,9 @@
 
 return [
 
-    'default' => isset($_SERVER['VERCEL_URL']) ? 'stderr' : env('LOG_CHANNEL', 'stack'),
+    'default' => (isset($_SERVER['VERCEL_JOB_ID']) || isset($_SERVER['NOW_REGION'])) 
+    ? 'stderr' 
+    : env('LOG_CHANNEL', 'stack'),
 
     'deprecations' => [
         'channel' => env('LOG_DEPRECATIONS_CHANNEL', 'null'),
