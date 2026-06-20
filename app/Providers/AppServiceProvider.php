@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\View;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -11,7 +12,14 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        // Jika berjalan di Vercel, paksa jalur kompilasi Blade View ke folder /tmp
+        if (isset($_SERVER['VERCEL_JOB_ID']) || isset($_SERVER['NOW_REGION'])) {
+            $viewCachePath = '/tmp/storage/framework/views';
+            if (!file_exists($viewCachePath)) {
+                mkdir($viewCachePath, 0755, true);
+            }
+            $this->app['config']->set('view.compiled', $viewCachePath);
+        }
     }
 
     /**
@@ -19,7 +27,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        // Pindahkan jalur kompilasi blade ke folder /tmp milik Vercel
-        config(['view.compiled' => '/tmp']);
+        //
     }
 }
