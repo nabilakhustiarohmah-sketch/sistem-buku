@@ -3,13 +3,9 @@
     "builds": [
         {
             "src": "api/index.php",
-            "use": "vercel-php@0.7.1",
+            "use": "vercel-php",
             "config": {
-                "phpVersion": "8.3",
-                "composerEnv": {
-                    "COMPOSER_AUTH": "{}",
-                    "COMPOSER_ALLOW_SUPERUSER": "1"
-                }
+                "phpVersion": "8.3"
             }
         }
     ],
