@@ -1,5 +1,6 @@
 <?php
 
+// Arahkan ke vendor di luar folder api
 require __DIR__ . '/../vendor/autoload.php';
 $app = require_once __DIR__ . '/../bootstrap/app.php';
 
