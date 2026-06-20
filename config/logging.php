@@ -2,7 +2,7 @@
 
 return [
 
-    'default' => (isset($_SERVER['VERCEL_JOB_ID']) || isset($_SERVER['NOW_REGION'])) 
+   'default' => (isset($_SERVER['VERCEL_JOB_ID']) || isset($_SERVER['NOW_REGION'])) 
     ? 'stderr' 
     : env('LOG_CHANNEL', 'stack'),
 

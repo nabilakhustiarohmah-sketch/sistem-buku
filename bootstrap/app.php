@@ -4,12 +4,13 @@ use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
 
-// Amankan Vercel: Pindahkan folder cache ke /tmp agar tidak Read-Only
+// Cek apakah aplikasi berjalan di Vercel
 if (isset($_SERVER['VERCEL_JOB_ID']) || isset($_SERVER['NOW_REGION'])) {
     $cachePath = '/tmp/bootstrap/cache';
     if (!file_exists($cachePath)) {
         mkdir($cachePath, 0755, true);
     }
+    // Pindahkan file cache manifest ke folder /tmp
     putenv("APP_MANIFEST_CACHE_PATH={$cachePath}/packages.php");
     putenv("APP_SERVICES_CACHE_PATH={$cachePath}/services.php");
 }
