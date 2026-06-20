@@ -31,7 +31,6 @@ return [
             'with' => [
                 'stream' => 'php://stderr',
             ],
-            'processors' => [Laravel\SerializableClosure\SerializableClosure::class],
         ],
 
         'syslog' => [
